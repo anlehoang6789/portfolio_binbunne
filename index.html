@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Binbunne - Food Creator Portfolio</title>
+    <script src="/_sdk/element_sdk.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+          sans-serif;
+        scroll-behavior: smooth;
+      }
+
+      .gradient-bg {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ffe66d 100%);
+      }
+
+      .section {
+        min-height: 100%;
+        padding: 60px 20px;
+      }
+
+      .card {
+        background: white;
+        border-radius: 20px;
+        padding: 30px;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+      }
+
+      .nav-dot {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+
+      .nav-dot.active {
+        background: white;
+        transform: scale(1.3);
+      }
+
+      .showcase-item {
+        position: relative;
+        border-radius: 15px;
+        overflow: hidden;
+        aspect-ratio: 9/16;
+        background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+      }
+
+      .showcase-item img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .stats-number {
+        font-size: 48px;
+        font-weight: 800;
+        background: linear-gradient(135deg, #ff6b6b 0%, #ffe66d 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .package-card {
+        border: 3px solid transparent;
+        transition: all 0.3s ease;
+      }
+
+      .package-card:hover {
+        border-color: #ff6b6b;
+      }
+
+      .brand-logo-container {
+        width: 100%;
+        max-width: 180px;
+        transition: transform 0.3s ease, filter 0.3s ease;
+      }
+
+      .brand-logo-container:hover {
+        transform: scale(1.05);
+        filter: drop-shadow(0 4px 12px rgba(0, 0, 0, 0.15));
+      }
+
+      .brand-logo {
+        width: 100%;
+        height: auto;
+      }
+    </style>
+    <style>
+      @view-transition {
+        navigation: auto;
+      }
+    </style>
+    <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  </head>
+  <body>
+    <!-- Navigation Dots -->
+    <div
+      class="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 flex flex-col gap-4"
+    >
+      <div class="nav-dot active" onclick="scrollToSection(0)"></div>
+      <div class="nav-dot" onclick="scrollToSection(1)"></div>
+      <div class="nav-dot" onclick="scrollToSection(2)"></div>
+      <div class="nav-dot" onclick="scrollToSection(3)"></div>
+      <div class="nav-dot" onclick="scrollToSection(4)"></div>
+      <div class="nav-dot" onclick="scrollToSection(5)"></div>
+      <div class="nav-dot" onclick="scrollToSection(6)"></div>
+      <div class="nav-dot" onclick="scrollToSection(7)"></div>
+    </div>
+    <!-- Section 1: Cover -->
+    <section
+      id="section-0"
+      class="section gradient-bg flex items-center justify-center"
+    >
+      <div class="text-center text-white max-w-4xl">
+        <div class="mb-8">
+          <img
+            src="images/avatar_binbunne.png"
+            alt="Binbunne"
+            class="w-32 h-32 mx-auto mb-6 rounded-full shadow-2xl object-cover border-4 border-white"
+            onerror="this.src=''; this.alt='Ảnh không tải được'; this.style.display='none';"
+          />
+        </div>
+        <h1 id="creator-name" class="text-7xl font-black mb-6 drop-shadow-lg">
+          Binbunne
+        </h1>
+        <p id="tagline" class="text-3xl font-light mb-8">
+          Mỗi video là một chuyến đi vị giác
+        </p>
+        <button
+          onclick="scrollToSection(1)"
+          class="bg-white text-gray-800 px-8 py-4 rounded-full font-bold text-lg hover:bg-opacity-90 transition-all transform hover:scale-105 shadow-xl"
+        >
+          Khám phá ngay →
+        </button>
+      </div>
+    </section>
+    <!-- Section 2: Giới thiệu -->
+    <section id="section-1" class="section bg-white">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-5xl font-black mb-12 text-center">
+          <span
+            class="bg-gradient-to-r from-red-500 to-yellow-400 bg-clip-text text-transparent"
+            >Về Binbunne</span
+          >
+        </h2>
+        <div class="card">
+          <div class="grid md:grid-cols-2 gap-8 items-center">
+            <div>
+              <img
+                src="images/avatar_binbunne.png"
+                alt="Binbunne"
+                class="w-full aspect-square rounded-2xl object-cover shadow-lg"
+                onerror="this.src=''; this.alt='Ảnh không tải được'; this.classList.add('bg-gradient-to-br', 'from-red-400', 'to-yellow-300');"
+              />
+            </div>
+            <div>
+              <p
+                id="intro-text"
+                class="text-xl leading-relaxed text-gray-700 mb-6"
+              >
+                Mình là Binbunne, nhà sáng tạo nội dung ẩm thực với niềm đam mê
+                khám phá hương vị Việt Nam và thế giới. Trên kênh của mình, bạn
+                sẽ bắt gặp những món ăn do chính tay mình thực hiện – từ các món
+                quen thuộc trong bữa cơm gia đình đến những công thức mới mẻ
+                được biến tấu theo phong cách riêng. Mình tin rằng nấu ăn không
+                chỉ là làm ra món ngon, mà còn là cách chia sẻ yêu thương và
+                năng lượng tích cực. Mục tiêu của mình là mang đến cho mọi người
+                những công thức dễ làm, hương vị chân thật và cảm hứng để ai
+                cũng có thể vào bếp. Nếu thương hiệu của bạn muốn kết nối với
+                cộng đồng yêu ẩm thực, hãy để Binbunne giúp kể câu chuyện ấy
+                bằng vị giác, màu sắc và cảm xúc.
+              </p>
+              <div class="flex flex-wrap gap-3">
+                <span
+                  class="bg-red-100 text-red-600 px-4 py-2 rounded-full font-semibold"
+                  >🎥 Cooking Video</span
+                >
+                <span
+                  class="bg-yellow-100 text-yellow-600 px-4 py-2 rounded-full font-semibold"
+                  >⭐ Review Gia Vị</span
+                >
+                <span
+                  class="bg-orange-100 text-orange-600 px-4 py-2 rounded-full font-semibold"
+                  >🍳 Công Thức Sáng Tạo</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section 3: USP -->
+    <section
+      id="section-2"
+      class="section bg-gradient-to-br from-red-50 to-yellow-50"
+    >
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-5xl font-black mb-12 text-center">
+          <span
+            class="bg-gradient-to-r from-red-500 to-yellow-400 bg-clip-text text-transparent"
+            >Điểm Khác Biệt</span
+          >
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="card text-center">
+            <div class="text-6xl mb-4">📸</div>
+            <h3 class="text-2xl font-bold mb-3 text-gray-800">
+              Hình Ảnh Chất Lượng
+            </h3>
+            <p class="text-gray-600">
+              Hình quay rõ nét, màu sắc tươi sáng, nhìn là muốn ăn ngay
+            </p>
+          </div>
+          <div class="card text-center">
+            <div class="text-6xl mb-4">👨‍🍳</div>
+            <h3 class="text-2xl font-bold mb-3 text-gray-800">
+              Kỹ Năng Thực Tế
+            </h3>
+            <p class="text-gray-600">
+              Nấu ăn thật, không làm food giả, đảm bảo chất lượng
+            </p>
+          </div>
+          <div class="card text-center">
+            <div class="text-6xl mb-4">💡</div>
+            <h3 class="text-2xl font-bold mb-3 text-gray-800">Sáng Tạo Cao</h3>
+            <p class="text-gray-600">
+              Công thức đơn giản, dễ lan truyền, tone vui và trẻ trung
+            </p>
+          </div>
+          <div class="card text-center">
+            <div class="text-6xl mb-4">🎬</div>
+            <h3 class="text-2xl font-bold mb-3 text-gray-800">
+              Kể Chuyện Tự Nhiên
+            </h3>
+            <p class="text-gray-600">
+              Phong cách gần gũi, hợp với nhiều nhóm khách hàng
+            </p>
+          </div>
+          <div class="card text-center">
+            <div class="text-6xl mb-4">⚡</div>
+            <h3 class="text-2xl font-bold mb-3 text-gray-800">
+              Năng Lượng Tích Cực
+            </h3>
+            <p class="text-gray-600">
+              Nội dung vui vẻ, truyền cảm hứng nấu ăn mỗi ngày
+            </p>
+          </div>
+          <div class="card text-center">
+            <div class="text-6xl mb-4">🎯</div>
+            <h3 class="text-2xl font-bold mb-3 text-gray-800">Dễ Áp Dụng</h3>
+            <p class="text-gray-600">
+              Công thức đơn giản, ai cũng có thể làm theo được
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section 4: Showcase -->
+    <section id="section-3" class="section bg-white">
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-5xl font-black mb-12 text-center">
+          <span
+            class="bg-gradient-to-r from-red-500 to-yellow-400 bg-clip-text text-transparent"
+            >Nội Dung Nổi Bật</span
+          >
+        </h2>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div
+            class="showcase-item group cursor-pointer"
+            style="
+              background-image: url('images/nam_dui_ga_baby.png');
+              background-size: cover;
+              background-position: center;
+            "
+          >
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center text-white bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all p-4"
+            >
+              <p class="font-bold text-center text-sm">
+                Nấm Đùi Gà Baby Kho Đậu Thơm
+              </p>
+              <p class="text-xs mt-2 opacity-90">1.5M views</p>
+            </div>
+          </div>
+          <div
+            class="showcase-item group cursor-pointer"
+            style="
+              background-image: url('images/mi_udon_nam_huong.png');
+              background-size: cover;
+              background-position: center;
+            "
+          >
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center text-white bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all p-4"
+            >
+              <p class="font-bold text-center text-sm">Mì Udon Nấm Hương</p>
+              <p class="text-xs mt-2 opacity-90">7.8M views</p>
+            </div>
+          </div>
+          <div
+            class="showcase-item group cursor-pointer"
+            style="
+              background-image: url('images/phi_top_mo_sot_hu_tieu.png');
+              background-size: cover;
+              background-position: center;
+            "
+          >
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center text-white bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all p-4"
+            >
+              <p class="font-bold text-center text-sm">
+                Cách Phi Tóp Mỡ Và Nước Sốt Trộn Mì
+              </p>
+              <p class="text-xs mt-2 opacity-90">2.3M views</p>
+            </div>
+          </div>
+          <div
+            class="showcase-item group cursor-pointer"
+            style="
+              background-image: url('images/oc_xao_sa_ot_chay.png');
+              background-size: cover;
+              background-position: center;
+            "
+          >
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center text-white bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all p-4"
+            >
+              <p class="font-bold text-center text-sm">Ốc Xào Sả Ớt Chay</p>
+              <p class="text-xs mt-2 opacity-90">1.7M views</p>
+            </div>
+          </div>
+          <div
+            class="showcase-item group cursor-pointer"
+            style="
+              background-image: url('images/dau_hu_chien_gion_tron_sot_me.png');
+              background-size: cover;
+              background-position: center;
+            "
+          >
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center text-white bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all p-4"
+            >
+              <p class="font-bold text-center text-sm">
+                Đậu Hủ Chiên Giòn Sốt Me
+              </p>
+              <p class="text-xs mt-2 opacity-90">12.2M views</p>
+            </div>
+          </div>
+          <div
+            class="showcase-item group cursor-pointer"
+            style="
+              background-image: url('images/mi_lanh_han_quoc.png');
+              background-size: cover;
+              background-position: center;
+            "
+          >
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center text-white bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all p-4"
+            >
+              <p class="font-bold text-center text-sm">Mì Lạnh Hàn Quốc</p>
+              <p class="text-xs mt-2 opacity-90">1.9M views</p>
+            </div>
+          </div>
+          <div
+            class="showcase-item group cursor-pointer"
+            style="
+              background-image: url('images/trung_chien_xuc_xich.png');
+              background-size: cover;
+              background-position: center;
+            "
+          >
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center text-white bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all p-4"
+            >
+              <p class="font-bold text-center text-sm">
+                Trứng Chiên Xúc Xích Sốt Nước Tương
+              </p>
+              <p class="text-xs mt-2 opacity-90">4.6M views</p>
+            </div>
+          </div>
+          <div
+            class="showcase-item group cursor-pointer"
+            style="
+              background-image: url('images/top_mo_rim_mam_sa_chay.png');
+              background-size: cover;
+              background-position: center;
+            "
+          >
+            <div
+              class="absolute inset-0 flex flex-col items-center justify-center text-white bg-black bg-opacity-40 group-hover:bg-opacity-60 transition-all p-4"
+            >
+              <p class="font-bold text-center text-sm">
+                Tóp Mỡ Rim Mắm Sả Chay
+              </p>
+              <p class="text-xs mt-2 opacity-90">1.5M views</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- SECTION 4.5 - SERIES TRUYỀN CẢM HỨNG -->
+    <section id="section-4-5" class="py-20 bg-white">
+      <div class="container mx-auto px-6 md:px-16">
+        <h2 class="text-4xl font-bold text-center text-gray-800 mb-4">
+          Series Truyền Cảm Hứng
+        </h2>
+        <p class="text-center text-gray-600 max-w-2xl mx-auto mb-12">
+          Những chuỗi video mang thông điệp tích cực, gần gũi và truyền cảm hứng
+          đến người xem qua từng bữa ăn.
+        </p>
+
+        <!-- Series 1: Cơm Sinh Viên -->
+        <div class="grid md:grid-cols-2 gap-10 items-center mb-20">
+          <!-- Ảnh bên trái -->
+          <div class="overflow-hidden rounded-2xl shadow-lg">
+            <img
+              src="images/series_com_sinh_vien.png"
+              alt="Cơm sinh viên"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+
+          <!-- Nội dung bên phải -->
+          <div>
+            <h3 class="text-3xl font-bold text-gray-800 mb-3">
+              Series: Cơm Sinh Viên
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              “Cơm sinh viên” là chuỗi video mình thực hiện để gợi nhớ về những
+              bữa cơm giản dị mà đong đầy cảm xúc. Dù chỉ là những món ăn đơn
+              giản như trứng chiên, cá kho hay canh rau muống, nhưng mỗi video
+              đều mang thông điệp:
+              <strong
+                >“Ăn ngon không cần sang trọng, chỉ cần thật lòng.”</strong
+              >
+            </p>
+            <p class="mt-3 text-gray-500">
+              🎬 Mỗi tập là một câu chuyện nhỏ, nơi ẩm thực kết nối kỷ niệm và
+              nụ cười.
+            </p>
+          </div>
+        </div>
+
+        <!-- Series 2: Thức Ăn Chay -->
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+          <!-- Nội dung bên trái -->
+          <div class="order-2 md:order-1">
+            <h3 class="text-3xl font-bold text-gray-800 mb-3">
+              Series: Thức Ăn Chay
+            </h3>
+            <p class="text-gray-600 leading-relaxed">
+              “Thức ăn chay” là hành trình mình muốn chia sẻ sự tĩnh lặng và cân
+              bằng trong ẩm thực. Không chỉ là lựa chọn món ăn, đây là cách mình
+              <strong
+                >truyền đi năng lượng nhẹ nhàng, tích cực và trân trọng thiên
+                nhiên</strong
+              >.
+            </p>
+            <p class="mt-3 text-gray-500">
+              🌱 Mỗi món chay là một lời mời gọi sống chậm lại, cảm nhận hương
+              vị thuần khiết từ đất trời.
+            </p>
+          </div>
+
+          <!-- Ảnh bên phải -->
+          <div class="order-1 md:order-2 overflow-hidden rounded-2xl shadow-lg">
+            <img
+              src="images/series_thuc_an_chay.png"
+              alt="Thức ăn chay"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section 5: Audience & Stats -->
+    <section id="section-4" class="section gradient-bg">
+      <div class="max-w-5xl mx-auto">
+        <h2 class="text-5xl font-black mb-12 text-center text-white">
+          Thống Kê &amp; Đối Tượng
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="card text-center">
+            <div class="stats-number mb-2">1.8M</div>
+            <p class="text-gray-600 font-semibold text-lg">Followers TikTok</p>
+          </div>
+          <div class="card text-center">
+            <div class="stats-number mb-2">85%</div>
+            <p class="text-gray-600 font-semibold text-lg">
+              Watch Time Trung Bình
+            </p>
+          </div>
+          <div class="card text-center">
+            <div class="stats-number mb-2">18-35</div>
+            <p class="text-gray-600 font-semibold text-lg">Độ Tuổi Chính</p>
+          </div>
+        </div>
+        <div class="card mt-8">
+          <h3 class="text-2xl font-bold mb-4 text-center">
+            Đối Tượng Khán Giả
+          </h3>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 class="font-bold text-lg mb-3 text-gray-800">
+                👥 Nhân khẩu học
+              </h4>
+              <ul class="space-y-2 text-gray-600">
+                <li>• 65% nữ, 35% nam</li>
+                <li>• Chủ yếu 18-35 tuổi</li>
+                <li>• Sống tại thành phố lớn</li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="font-bold text-lg mb-3 text-gray-800">❤️ Sở thích</h4>
+              <ul class="space-y-2 text-gray-600">
+                <li>• Yêu thích nấu ăn</li>
+                <li>• Quan tâm healthy lifestyle</li>
+                <li>• Thích khám phá món mới</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section 6: Packages -->
+    <section
+      id="section-5"
+      class="section bg-gradient-to-br from-red-50 to-yellow-50"
+    >
+      <div class="max-w-6xl mx-auto">
+        <h2 class="text-5xl font-black mb-12 text-center">
+          <span
+            class="bg-gradient-to-r from-red-500 to-yellow-400 bg-clip-text text-transparent"
+            >Gói Hợp Tác</span
+          >
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div class="card package-card">
+            <div class="text-5xl mb-4 text-center">📱</div>
+            <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">
+              Gói Review
+            </h3>
+            <ul class="space-y-3 mb-6 text-gray-600">
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>1 video review chi tiết</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>3 ảnh chất lượng cao</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>Đăng trên TikTok</span>
+              </li>
+            </ul>
+            <p class="text-center text-gray-500 font-semibold">
+              Trao đổi trực tiếp
+            </p>
+          </div>
+          <div class="card package-card border-red-500">
+            <div
+              class="bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-full inline-block mb-4"
+            >
+              PHỔ BIẾN
+            </div>
+            <div class="text-5xl mb-4 text-center">🍳</div>
+            <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">
+              Gói Công Thức x Brand
+            </h3>
+            <ul class="space-y-3 mb-6 text-gray-600">
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>1 video công thức đầy đủ</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>1 video cut-down ngắn</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>Tích hợp sản phẩm tự nhiên</span>
+              </li>
+            </ul>
+            <p class="text-center text-gray-500 font-semibold">
+              Trao đổi trực tiếp
+            </p>
+          </div>
+          <div class="card package-card">
+            <div class="text-5xl mb-4 text-center">🚀</div>
+            <h3 class="text-2xl font-bold mb-4 text-center text-gray-800">
+              Gói Launch
+            </h3>
+            <ul class="space-y-3 mb-6 text-gray-600">
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>2 video chính</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>4 ảnh đẹp</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>Story trên TikTok</span>
+              </li>
+              <li class="flex items-start">
+                <span class="text-green-500 mr-2">✓</span>
+                <span>Chiến dịch ra mắt sản phẩm</span>
+              </li>
+            </ul>
+            <p class="text-center text-gray-500 font-semibold">
+              Trao đổi trực tiếp
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section 7: Contact -->
+    <section id="section-6" class="section gradient-bg">
+      <div class="max-w-4xl mx-auto text-center">
+        <h2 class="text-5xl font-black mb-8 text-white">Liên Hệ Hợp Tác</h2>
+        <div class="card">
+          <p class="text-xl text-gray-600 mb-8">
+            Sẵn sàng hợp tác để tạo nên những nội dung ẩm thực tuyệt vời!
+          </p>
+          <div class="grid md:grid-cols-3 gap-6">
+            <div class="text-center">
+              <div class="text-4xl mb-3">📧</div>
+              <p class="font-semibold text-gray-800 mb-1">Email</p>
+              <p id="email" class="text-gray-600">binbunne.contact@gmail.com</p>
+            </div>
+            <div class="text-center">
+              <div class="text-4xl mb-3">📱</div>
+              <p class="font-semibold text-gray-800 mb-1">Điện thoại</p>
+              <p id="phone" class="text-gray-600">0765474199</p>
+            </div>
+            <div class="text-center">
+              <div class="text-4xl mb-3">🎵</div>
+              <p class="font-semibold text-gray-800 mb-1">TikTok</p>
+              <p id="tiktok-link" class="text-gray-600">@binbunne</p>
+            </div>
+          </div>
+          <div class="mt-8">
+            <a
+              href="https://www.tiktok.com/@binbunne"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-block bg-gradient-to-r from-red-500 to-yellow-400 text-white px-8 py-4 rounded-full font-bold text-lg hover:opacity-90 transition-all transform hover:scale-105 shadow-xl"
+            >
+              Xem TikTok của tôi →
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Footer: Brand Partners -->
+    <footer
+      class="bg-gradient-to-br from-gray-50 to-gray-100 py-16 border-t-4 border-red-500"
+    >
+      <div class="max-w-6xl mx-auto px-6">
+        <h2 class="text-3xl font-black mb-3 text-center text-gray-800">
+          Đối Tác Thương Hiệu
+        </h2>
+        <p class="text-center text-gray-600 mb-10">
+          Tự hào đồng hành cùng các thương hiệu hàng đầu
+        </p>
+        <div
+          class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center"
+        >
+          <!-- Chin-su -->
+          <div class="brand-logo-container bg-white p-6 rounded-xl shadow-md">
+            <img
+              src="https://images.seeklogo.com/logo-png/28/1/chinsu-logo-png_seeklogo-286201.png"
+              alt="Chin-su"
+              class="brand-logo"
+              onerror="this.src=''; this.alt='Chin-su'; this.style.display='none';"
+            />
+          </div>
+          <!-- Knorr -->
+          <div class="brand-logo-container bg-white p-6 rounded-xl shadow-md">
+            <img
+              src="https://images.seeklogo.com/logo-png/7/1/knorr-logo-png_seeklogo-79270.png"
+              alt="Knorr"
+              class="brand-logo"
+              onerror="this.src=''; this.alt='Knorr'; this.style.display='none';"
+            />
+          </div>
+          <!-- Maggi -->
+          <div class="brand-logo-container bg-white p-6 rounded-xl shadow-md">
+            <img
+              src="https://images.seeklogo.com/logo-png/21/1/maggi-logo-png_seeklogo-217161.png"
+              alt="Maggi"
+              class="brand-logo"
+              onerror="this.src=''; this.alt='Maggi'; this.style.display='none';"
+            />
+          </div>
+          <!-- Vinamilk -->
+          <div class="brand-logo-container bg-white p-6 rounded-xl shadow-md">
+            <img
+              src="https://images.seeklogo.com/logo-png/49/1/vinamilk-logo-png_seeklogo-490739.png"
+              alt="Vinamilk"
+              class="brand-logo"
+              onerror="this.src=''; this.alt='Vinamilk'; this.style.display='none';"
+            />
+          </div>
+          <!-- Ajinomoto -->
+          <div class="brand-logo-container bg-white p-6 rounded-xl shadow-md">
+            <img
+              src="https://images.seeklogo.com/logo-png/0/1/ajinomoto-logo-png_seeklogo-5456.png"
+              alt="Ajinomoto"
+              class="brand-logo"
+              onerror="this.src=''; this.alt='Ajinomoto'; this.style.display='none';"
+            />
+          </div>
+          <!-- Meizan -->
+          <div class="brand-logo-container bg-white p-6 rounded-xl shadow-md">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSOSWQToCVqujpZ69CZh6z8Rc0xR_rfxfWZ7w&s"
+              alt="Meizan"
+              class="brand-logo"
+              onerror="this.src=''; this.alt='Meizan'; this.style.display='none';"
+            />
+          </div>
+          <!-- AEON Mall -->
+          <div class="brand-logo-container bg-white p-6 rounded-xl shadow-md">
+            <img
+              src="https://s3-symbol-logo.tradingview.com/aeon-co-m-bhd--600.png"
+              alt="AEON Mall"
+              class="brand-logo"
+              onerror="this.src=''; this.alt='AEON Mall'; this.style.display='none';"
+            />
+          </div>
+          <!-- Pepsi -->
+          <div class="brand-logo-container bg-white p-6 rounded-xl shadow-md">
+            <img
+              src="https://images.seeklogo.com/logo-png/48/1/pepsi-logo-png_seeklogo-483458.png"
+              alt="Pepsi"
+              class="brand-logo"
+              onerror="this.src=''; this.alt='Pepsi'; this.style.display='none';"
+            />
+          </div>
+        </div>
+        <div class="mt-12 text-center text-gray-500 text-sm">
+          <p>© 2025 Binbunne. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <script>
+      const defaultConfig = {
+        creator_name: "Binbunne",
+        tagline: "Mỗi video là một chuyến đi vị giác",
+        intro_text:
+          "Mình là Binbunne, nhà sáng tạo nội dung ẩm thực với niềm đam mê khám phá hương vị Việt Nam và thế giới.\nTrên kênh của mình, bạn sẽ bắt gặp những món ăn do chính tay mình thực hiện – từ các món quen thuộc trong bữa cơm gia đình đến những công thức mới mẻ được biến tấu theo phong cách riêng.\nMình tin rằng nấu ăn không chỉ là làm ra món ngon, mà còn là cách chia sẻ yêu thương và năng lượng tích cực.\nMục tiêu của mình là mang đến cho mọi người những công thức dễ làm, hương vị chân thật và cảm hứng để ai cũng có thể vào bếp.\nNếu thương hiệu của bạn muốn kết nối với cộng đồng yêu ẩm thực, hãy để Binbunne giúp kể câu chuyện ấy bằng vị giác, màu sắc và cảm xúc.",
+        email: "binbunne.contact@gmail.com",
+        phone: "0765474199",
+        tiktok_link: "@binbunne",
+        background_color: "#FF6B6B",
+        card_color: "#FFFFFF",
+        text_color: "#374151",
+        primary_button_color: "#FF6B6B",
+        secondary_accent_color: "#FFE66D",
+      };
+
+      async function onConfigChange(config) {
+        const creatorName = config.creator_name || defaultConfig.creator_name;
+        const tagline = config.tagline || defaultConfig.tagline;
+        const introText = config.intro_text || defaultConfig.intro_text;
+        const email = config.email || defaultConfig.email;
+        const phone = config.phone || defaultConfig.phone;
+        const tiktokLink = config.tiktok_link || defaultConfig.tiktok_link;
+
+        document.getElementById("creator-name").textContent = creatorName;
+        document.getElementById("tagline").textContent = tagline;
+        document.getElementById("intro-text").textContent = introText;
+        document.getElementById("email").textContent = email;
+        document.getElementById("phone").textContent = phone;
+        document.getElementById("tiktok-link").textContent = tiktokLink;
+      }
+
+      function scrollToSection(index) {
+        const section = document.getElementById(`section-${index}`);
+        section.scrollIntoView({ behavior: "smooth" });
+
+        document.querySelectorAll(".nav-dot").forEach((dot, i) => {
+          if (i === index) {
+            dot.classList.add("active");
+          } else {
+            dot.classList.remove("active");
+          }
+        });
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const index = entry.target.id.split("-")[1];
+              document.querySelectorAll(".nav-dot").forEach((dot, i) => {
+                if (i === parseInt(index)) {
+                  dot.classList.add("active");
+                } else {
+                  dot.classList.remove("active");
+                }
+              });
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      document.querySelectorAll("section").forEach((section) => {
+        observer.observe(section);
+      });
+
+      if (window.elementSdk) {
+        window.elementSdk.init({
+          defaultConfig,
+          onConfigChange,
+          mapToCapabilities: (config) => ({
+            recolorables: [
+              {
+                get: () =>
+                  config.background_color || defaultConfig.background_color,
+                set: (value) => {
+                  config.background_color = value;
+                  window.elementSdk.setConfig({ background_color: value });
+                },
+              },
+              {
+                get: () => config.card_color || defaultConfig.card_color,
+                set: (value) => {
+                  config.card_color = value;
+                  window.elementSdk.setConfig({ card_color: value });
+                },
+              },
+              {
+                get: () => config.text_color || defaultConfig.text_color,
+                set: (value) => {
+                  config.text_color = value;
+                  window.elementSdk.setConfig({ text_color: value });
+                },
+              },
+              {
+                get: () =>
+                  config.primary_button_color ||
+                  defaultConfig.primary_button_color,
+                set: (value) => {
+                  config.primary_button_color = value;
+                  window.elementSdk.setConfig({ primary_button_color: value });
+                },
+              },
+              {
+                get: () =>
+                  config.secondary_accent_color ||
+                  defaultConfig.secondary_accent_color,
+                set: (value) => {
+                  config.secondary_accent_color = value;
+                  window.elementSdk.setConfig({
+                    secondary_accent_color: value,
+                  });
+                },
+              },
+            ],
+            borderables: [],
+            fontEditable: undefined,
+            fontSizeable: undefined,
+          }),
+          mapToEditPanelValues: (config) =>
+            new Map([
+              [
+                "creator_name",
+                config.creator_name || defaultConfig.creator_name,
+              ],
+              ["tagline", config.tagline || defaultConfig.tagline],
+              ["intro_text", config.intro_text || defaultConfig.intro_text],
+              ["email", config.email || defaultConfig.email],
+              ["phone", config.phone || defaultConfig.phone],
+              ["tiktok_link", config.tiktok_link || defaultConfig.tiktok_link],
+            ]),
+        });
+      }
+    </script>
+    <script>
+      (function () {
+        function c() {
+          var b = a.contentDocument || a.contentWindow.document;
+          if (b) {
+            var d = b.createElement("script");
+            d.innerHTML =
+              "window.__CF$cv$params={r:'99d20f26628b9c7a',t:'MTc2MjkwODg3OC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";
+            b.getElementsByTagName("head")[0].appendChild(d);
+          }
+        }
+        if (document.body) {
+          var a = document.createElement("iframe");
+          a.height = 1;
+          a.width = 1;
+          a.style.position = "absolute";
+          a.style.top = 0;
+          a.style.left = 0;
+          a.style.border = "none";
+          a.style.visibility = "hidden";
+          document.body.appendChild(a);
+          if ("loading" !== document.readyState) c();
+          else if (window.addEventListener)
+            document.addEventListener("DOMContentLoaded", c);
+          else {
+            var e = document.onreadystatechange || function () {};
+            document.onreadystatechange = function (b) {
+              e(b);
+              "loading" !== document.readyState &&
+                ((document.onreadystatechange = e), c());
+            };
+          }
+        }
+      })();
+    </script>
+  </body>
+</html>
